@@ -7,7 +7,7 @@ AI agent toolkit for the [Antigravity](https://antigravity.ai) coding assistant 
 ## Install
 
 ```bash
-npx @vudovn/ag-kit init
+npx @hoanggummyvn/ag-kit init
 ```
 
 Copies `.agent/` into your project. That's it.
@@ -42,7 +42,7 @@ Full reference: `.agent/ARCHITECTURE.md`
 ## Update
 
 ```bash
-npx @vudovn/ag-kit init
+npx @hoanggummyvn/ag-kit init
 ```
 
 Re-running overwrites `.agent/` with the latest version (prompts before overwriting).

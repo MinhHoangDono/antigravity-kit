@@ -1,12 +1,12 @@
 {
-  "name": "@vudovn/ag-kit",
+  "name": "@hoanggummyvn/ag-kit",
   "version": "1.0.0",
   "description": "AntigravityKit — AI agent toolkit for the Antigravity coding assistant. Installs .agent/ with 15 agents, 36 skills, and 16 workflows into any project.",
   "keywords": ["antigravity", "ai", "agents", "claude", "llm", "toolkit"],
-  "homepage": "https://github.com/vudovn/antigravity-kit",
+  "homepage": "https://github.com/MinhHoangDono/antigravity-kit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vudovn/antigravity-kit.git"
+    "url": "https://github.com/MinhHoangDono/antigravity-kit.git"
   },
   "type": "module",
   "license": "MIT",
