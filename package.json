@@ -9,6 +9,7 @@
     "url": "https://github.com/MinhHoangDono/antigravity-kit.git"
   },
   "type": "module",
+  "main": "./bin/init.js",
   "license": "MIT",
   "bin": {
     "ag-kit": "./bin/init.js"
