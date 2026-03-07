@@ -1,5 +1,5 @@
 {
-  "name": "@hoanggummyvn/ag-kit",
+  "name": "@hoanggummy/ag-kit",
   "version": "1.0.0",
   "description": "AntigravityKit — AI agent toolkit for the Antigravity coding assistant. Installs .agent/ with 15 agents, 36 skills, and 16 workflows into any project.",
   "keywords": ["antigravity", "ai", "agents", "claude", "llm", "toolkit"],
