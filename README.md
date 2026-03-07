@@ -2,7 +2,7 @@
 
 AI agent toolkit for the [Antigravity](https://antigravity.ai) coding assistant — and any AI IDE that reads a `.agent/` folder.
 
-**15 agents · 36 skills · 16 workflows**
+**15 agents · 68 skills · 16 workflows**
 
 ## Install
 
@@ -17,7 +17,7 @@ Copies `.agent/` into your project. That's it.
 | Component | Count | Examples |
 |-----------|-------|---------|
 | Agents | 15 | project-planner, debugger, code-reviewer, fullstack-developer |
-| Skills | 36 | plan, research, fix, bootstrap, preview, ai-multimodal |
+| Skills | 68 | plan, research, fix, bootstrap, preview, ai-multimodal, threejs, shopify... |
 | Workflows | 16 | /plan, /cook, /fix, /debug, /review, /brainstorm, /ask |
 
 ## Usage

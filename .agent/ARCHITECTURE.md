@@ -1,5 +1,5 @@
 # AntigravityKit Architecture
-15 agents | 36 skills | 16 workflows
+15 agents | 68 skills | 16 workflows
 
 ## Agents
 
@@ -63,6 +63,38 @@
 | repomix | Utils | Pack repository for AI context with repomix |
 | git | Utils | Git operations, branch strategies, conflict resolution |
 | kanban | Utils | Task board management and sprint planning |
+| agent-browser | Utils | AI-optimized browser automation and web scraping |
+| ai-artist | Creative | AI image generation with curated style prompts |
+| chrome-devtools | Dev | Browser automation with Puppeteer, screenshots, network monitoring |
+| ck-help | Core | ClaudeKit/AntigravityKit usage guide and command discovery |
+| coding-level | Core | Set coding experience level for tailored explanations |
+| context-engineering | Core | Monitor context usage, optimize token consumption |
+| copywriting | Creative | Conversion copywriting, headlines, email campaigns, landing pages |
+| common | Core | Shared utilities and common patterns |
+| document-skills | Docs | Document analysis and extraction workflows |
+| find-skills | Core | Discover and install agent skills |
+| gkg | Dev | Semantic code analysis with GitLab Knowledge Graph |
+| journal | Docs | Session summaries and decision logging |
+| markdown-novel-viewer | Docs | View markdown with book-like reading experience |
+| mcp-builder | Dev | Build MCP servers for LLM-external service integration |
+| mcp-management | Dev | Manage MCP servers, discover and execute tools |
+| mintlify | Docs | Build and deploy documentation sites with Mintlify |
+| plans-kanban | Core | Plans dashboard with progress tracking |
+| project-management | Core | Track progress, manage tasks, generate reports |
+| react-best-practices | Dev | React and Next.js performance optimization patterns |
+| remotion | Dev | Video creation in React with Remotion |
+| shader | Dev | GLSL fragment shaders for procedural graphics |
+| shopify | Dev | Shopify apps, extensions, themes with Shopify CLI |
+| skill-creator | Core | Create or update Claude/Antigravity skills |
+| tanstack | Dev | Build with TanStack Start, Form, and AI |
+| team | Core | Orchestrate Agent Teams for parallel multi-session collaboration |
+| template-skill | Core | Template for creating new skills |
+| threejs | Dev | 3D web apps with Three.js (WebGL/WebGPU) |
+| use-mcp | Dev | Utilize MCP server tools with intelligent discovery |
+| watzup | Core | Review recent changes and wrap up work sessions |
+| web-design-guidelines | UI/UX | Review UI code for web interface guidelines compliance |
+| web-frameworks | Dev | Build with Next.js App Router, Turborepo monorepos |
+| worktree | Dev | Create isolated git worktrees for parallel development |
 
 ---
 
