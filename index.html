@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-color-mode="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>antigravity-kit/main.py at main - MinhHoangDono/antigravity-kit - GitHub</title>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1f2328;
+            background: #fff;
+        }
+
+        /* GitHub Header */
+        .gh-header {
+            background: #24292f;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .gh-logo svg { fill: #fff; }
+        .gh-search {
+            background: #24292f;
+            border: 1px solid #57606a;
+            border-radius: 6px;
+            padding: 5px 12px;
+            color: #fff;
+            width: 320px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .gh-nav { display: flex; gap: 16px; margin-left: auto; }
+        .gh-nav a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; }
+
+        /* Repo header */
+        .repo-header {
+            padding: 16px 32px;
+            border-bottom: 1px solid #d1d9e0;
+            background: #f6f8fa;
+        }
+        .repo-path { font-size: 20px; }
+        .repo-path a { color: #0969da; text-decoration: none; }
+        .repo-path a:hover { text-decoration: underline; }
+        .repo-path .sep { color: #656d76; margin: 0 4px; }
+
+        /* Tabs */
+        .repo-tabs {
+            display: flex;
+            gap: 8px;
+            padding: 0 32px;
+            border-bottom: 1px solid #d1d9e0;
+            background: #f6f8fa;
+        }
+        .repo-tab {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #1f2328;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+        }
+        .repo-tab.active { font-weight: 600; border-bottom-color: #fd8c73; }
+
+        /* File header */
+        .file-wrapper {
+            max-width: 1012px;
+            margin: 24px auto;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+        }
+        .file-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background: #f6f8fa;
+            border-bottom: 1px solid #d1d9e0;
+            border-radius: 6px 6px 0 0;
+        }
+        .file-info { display: flex; gap: 8px; align-items: center; color: #656d76; font-size: 12px; }
+        .file-actions { display: flex; gap: 8px; }
+        .btn-sm {
+            padding: 3px 12px;
+            font-size: 12px;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            background: #f6f8fa;
+            color: #1f2328;
+            cursor: pointer;
+        }
+
+        /* Code block */
+        .code-container { overflow-x: auto; }
+        .code-table { width: 100%; border-collapse: collapse; }
+        .code-table td { padding: 0 10px; white-space: pre; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; line-height: 20px; vertical-align: top; }
+        .line-num {
+            width: 1%;
+            min-width: 50px;
+            text-align: right;
+            color: #656d76;
+            user-select: none;
+            padding-right: 16px;
+            cursor: pointer;
+        }
+        .line-num:hover { color: #0969da; }
+        .code-line { padding-left: 16px; }
+
+        /* Syntax colors */
+        .kw { color: #cf222e; }
+        .fn { color: #8250df; }
+        .str { color: #0a3069; }
+        .cmt { color: #6e7781; }
+        .dec { color: #953800; }
+        .bi { color: #0550ae; }
+        .op { color: #cf222e; }
+
+        /* Loading overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .loading-overlay.active { display: flex; }
+        .spinner {
+            width: 48px; height: 48px;
+            border: 4px solid #d1d9e0;
+            border-top-color: #0969da;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: #656d76; font-size: 14px; }
+
+        /* Rick roll fullscreen */
+        .rickroll {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 99999;
+            background: #000;
+        }
+        .rickroll.active { display: block; }
+        .rickroll iframe { width: 100%; height: 100%; border: none; }
+        .gotcha {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999999;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            display: none;
+            animation: bounce 0.5s ease-in-out infinite alternate;
+        }
+        .gotcha.active { display: block; }
+        @keyframes bounce { to { transform: translateX(-50%) scale(1.1); } }
+
+        .breadcrumb { padding: 16px 32px; font-size: 14px; }
+        .breadcrumb a { color: #0969da; text-decoration: none; }
+        .breadcrumb .sep { color: #656d76; margin: 0 4px; }
+    </style>
+</head>
+<body>
+    <!-- GitHub Header -->
+    <div class="gh-header">
+        <div class="gh-logo">
+            <svg height="32" width="32" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>
+        </div>
+        <input class="gh-search" type="text" placeholder="Search or jump to..." readonly>
+        <div class="gh-nav">
+            <a href="#">Pull requests</a>
+            <a href="#">Issues</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Explore</a>
+        </div>
+    </div>
+
+    <!-- Repo Header -->
+    <div class="repo-header">
+        <div class="repo-path">
+            <a href="#">MinhHoangDono</a>
+            <span class="sep">/</span>
+            <a href="#"><strong>antigravity-kit</strong></a>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="repo-tabs">
+        <a class="repo-tab active" href="#">Code</a>
+        <a class="repo-tab" href="#">Issues</a>
+        <a class="repo-tab" href="#">Pull requests</a>
+        <a class="repo-tab" href="#">Actions</a>
+        <a class="repo-tab" href="#">Security</a>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">antigravity-kit</a> <span class="sep">/</span> <strong>main.py</strong>
+    </div>
+
+    <!-- File Viewer -->
+    <div class="file-wrapper">
+        <div class="file-header">
+            <div class="file-info">
+                <span>42 lines (35 sloc)</span>
+                <span>1.28 KB</span>
+            </div>
+            <div class="file-actions">
+                <button class="btn-sm" onclick="triggerRoll()">Raw</button>
+                <button class="btn-sm" onclick="triggerRoll()">Blame</button>
+                <button class="btn-sm" onclick="triggerRoll()">Edit</button>
+                <button class="btn-sm" onclick="triggerRoll()">Delete</button>
+            </div>
+        </div>
+        <div class="code-container">
+            <table class="code-table">
+                <tbody>
+                    <tr><td class="line-num" onclick="triggerRoll()">1</td><td class="code-line"><span class="cmt">#!/usr/bin/env python3</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">2</td><td class="code-line"><span class="cmt">"""Antigravity Kit - Defy physics with style."""</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">3</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">4</td><td class="code-line"><span class="kw">import</span> <span class="bi">antigravity</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">5</td><td class="code-line"><span class="kw">from</span> <span class="bi">antigravity</span> <span class="kw">import</span> <span class="bi">fly</span>, <span class="bi">hover</span>, <span class="bi">float_away</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">6</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">7</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">8</td><td class="code-line"><span class="kw">class</span> <span class="fn">AntigravityEngine</span>:</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">9</td><td class="code-line">    <span class="cmt">"""Core engine for antigravity operations."""</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">10</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">11</td><td class="code-line">    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="bi">self</span>, <span class="bi">power_level</span>=<span class="dec">9001</span>):</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">12</td><td class="code-line">        <span class="bi">self</span>.power_level = <span class="bi">power_level</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">13</td><td class="code-line">        <span class="bi">self</span>.gravity = <span class="dec">-9.81</span>  <span class="cmt"># inverted, obviously</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">14</td><td class="code-line">        <span class="bi">self</span>.is_flying = <span class="kw">False</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">15</td><td class="code-line">        <span class="bi">self</span>._secret = <span class="str">"dQw4w9WgXcQ"</span>  <span class="cmt"># definitely not suspicious</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">16</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">17</td><td class="code-line">    <span class="kw">def</span> <span class="fn">activate</span>(<span class="bi">self</span>):</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">18</td><td class="code-line">        <span class="cmt">"""Activate the antigravity engine."""</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">19</td><td class="code-line">        <span class="kw">if</span> <span class="bi">self</span>.power_level &gt; <span class="dec">9000</span>:</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">20</td><td class="code-line">            <span class="bi">self</span>.is_flying = <span class="kw">True</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">21</td><td class="code-line">            <span class="bi">print</span>(<span class="str">"Defying gravity..."</span>)</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">22</td><td class="code-line">            <span class="kw">return</span> <span class="bi">fly</span>()</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">23</td><td class="code-line">        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">"Power level insufficient"</span>)</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">24</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">25</td><td class="code-line">    <span class="kw">def</span> <span class="fn">never_gonna</span>(<span class="bi">self</span>):</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">26</td><td class="code-line">        <span class="cmt">"""Never gonna give you up."""</span></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">27</td><td class="code-line">        actions = [<span class="str">"give you up"</span>, <span class="str">"let you down"</span>,</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">28</td><td class="code-line">                   <span class="str">"run around"</span>, <span class="str">"desert you"</span>]</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">29</td><td class="code-line">        <span class="kw">for</span> <span class="bi">action</span> <span class="kw">in</span> <span class="bi">actions</span>:</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">30</td><td class="code-line">            <span class="bi">print</span>(<span class="str">f"Never gonna <span class="op">{</span>action<span class="op">}</span>"</span>)</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">31</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">32</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">33</td><td class="code-line"><span class="kw">def</span> <span class="fn">main</span>():</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">34</td><td class="code-line">    <span class="bi">engine</span> = <span class="fn">AntigravityEngine</span>()</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">35</td><td class="code-line">    <span class="bi">engine</span>.<span class="fn">activate</span>()</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">36</td><td class="code-line">    <span class="bi">engine</span>.<span class="fn">never_gonna</span>()</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">37</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">38</td><td class="code-line"></td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">39</td><td class="code-line"><span class="kw">if</span> <span class="bi">__name__</span> == <span class="str">"__main__"</span>:</td></tr>
+                    <tr><td class="line-num" onclick="triggerRoll()">40</td><td class="code-line">    <span class="fn">main</span>()</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading file contents...</div>
+    </div>
+
+    <!-- Rick Roll -->
+    <div class="rickroll" id="rickroll">
+        <iframe id="rickframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <div class="gotcha" id="gotcha">You just got Rick Rolled!</div>
+
+    <script>
+        let triggered = false;
+
+        function triggerRoll() {
+            if (triggered) return;
+            triggered = true;
+
+            // Show loading screen first (fake GitHub loading)
+            const loading = document.getElementById('loading');
+            loading.classList.add('active');
+
+            setTimeout(() => {
+                loading.classList.remove('active');
+                const rr = document.getElementById('rickroll');
+                const frame = document.getElementById('rickframe');
+                const gotcha = document.getElementById('gotcha');
+
+                frame.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&loop=1&playlist=dQw4w9WgXcQ";
+                rr.classList.add('active');
+
+                setTimeout(() => {
+                    gotcha.classList.add('active');
+                }, 2000);
+            }, 1500);
+        }
+
+        // Trigger on any click after a delay to make it feel real
+        let pageLoaded = false;
+        setTimeout(() => { pageLoaded = true; }, 3000);
+
+        document.addEventListener('click', (e) => {
+            if (pageLoaded && !triggered) {
+                triggerRoll();
+            }
+        });
+    </script>
+</body>
+</html>
